@@ -1,0 +1,16 @@
+{
+  "name": "agycli-bridge",
+  "version": "0.1.0",
+  "description": "Wraps the local Antigravity CLI (agy -p) as an OpenAI-compatible API for SillyTavern",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test \"test/*.test.js\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "private": true
+}

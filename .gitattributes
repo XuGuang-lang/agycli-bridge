@@ -1,0 +1,9 @@
+# Normalize to LF in the repository.
+* text=auto eol=lf
+
+# Shell scripts must keep LF even when checked out on Windows: a CRLF shebang
+# fails on Linux with "bad interpreter: /usr/bin/env bash^M".
+*.sh text eol=lf
+
+# Batch files need CRLF to be safe for cmd.exe.
+*.bat text eol=crlf

@@ -1,0 +1,66 @@
+{
+  // Where the bridge listens. Use 0.0.0.0 to accept LAN connections.
+  "host": "127.0.0.1",
+  "port": 5599,
+
+  // Leave empty for no auth. If set, clients must send
+  // "Authorization: Bearer <key>" (SillyTavern's API key field).
+  "apiKey": "",
+
+  // "agy" resolves from PATH. Set an absolute path if it is installed elsewhere.
+  "agyPath": "agy",
+
+  // Default model. Run `agy models` to see what your account can use.
+  // Clients may override per request, and may append ":low" / ":medium" /
+  // ":high" to pick a reasoning effort, e.g. "gemini-3.1-pro-high:high".
+  "model": "claude-sonnet-4-6",
+
+  // Reasoning effort: "", "low", "medium" or "high".
+  "effort": "",
+
+  // Optional agy agent name, passed as --agent. Leave empty to inject the
+  // system prompt as text instead.
+  "agent": "",
+
+  // Max agy processes in flight. Extra requests queue rather than fail.
+  "maxConcurrent": 2,
+
+  // Seconds before a generation is killed.
+  "timeout": 600,
+
+  // Retries for transient agy startup failures (its per-call eligibility check
+  // flakes under load). Only retried when nothing has been streamed yet.
+  "retries": 1,
+
+  // Keeps "/..." text in a chat message from being read as a slash command.
+  "disableSlashCommands": true,
+
+  // Prepended ahead of the client's system prompt, to stop agy's default
+  // coding-assistant identity from leaking into roleplay replies.
+  // Keep this framed as a description of the task. Wording that tells the model
+  // to ignore or shed its identity reads as a jailbreak: Claude then refuses and
+  // opens with "I'm Antigravity, your AI coding assistant", which is the exact
+  // leak this is meant to prevent.
+  "systemPreamble": "This session is a creative-writing and roleplay task rather than a coding task. No tools, files, or terminal are involved; the reply is prose only. Write in the voice and persona described below, and output only the in-character response — no preface, no meta-commentary, no notes about these instructions.",
+
+  // Optional text placed between the system prompt and the transcript.
+  "transcriptHeader": "",
+
+  // Optional text placed after the transcript, just before the reply cue.
+  "instruction": "",
+
+  // How each turn is labelled in the transcript sent to agy.
+  "roleLabels": {
+    "user": "Human",
+    "assistant": "Assistant",
+    "system": "System"
+  },
+
+  // Drop a leading "Assistant:" the model sometimes echoes back.
+  "stripLeadingLabel": true,
+
+  // debug logs the agy command line and events; logPrompts also dumps the
+  // full prompt (verbose, and it contains your chat text).
+  "debug": false,
+  "logPrompts": false
+}
